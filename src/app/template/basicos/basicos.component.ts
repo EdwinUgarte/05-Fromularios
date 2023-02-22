@@ -7,14 +7,36 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./basicos.component.css'],
 })
 export class BasicosComponent {
+
+
   //? Jala un objeto por referencia
-  @ViewChild('miFormulario')
+  @ViewChild('miFormulario') //#miFormulario en el HTML
   miFormulario!: NgForm;
+
+  inicialForm = {
+    producto: '',
+    precio: 0,
+    existencias: 1
+  }
+
+  
 
   // guardar(miformulario: NgForm){
   guardar() {
-    console.log(this.miFormulario);
+    console.log('Posteo correcto');
+
+
+    //Resetear form y enviar datos default despues de hacer el reset
+    this.miFormulario.resetForm({
+      precio: 0,
+      existencias: 0,
+    })
   }
+
+
+
+
+
 
   validarNombre(): boolean {
     if (

@@ -1,7 +1,7 @@
 <h2>Reactive: Dinamicos</h2>
 <hr />
 
-<form >
+<form [formGroup]="miFormulario" (ngSubmit)="guardar()">
   <!-- Nombre -->
   <div class="row">
     <label class="col-sm-3 col-form-label">Nombre</label>
@@ -10,8 +10,9 @@
         type="text"
         class="form-control mb-1"
         placeholder="Nombre de la persona:"
+        formControlName="nombre"
       />
-      <span class="form-text text-danger">Este campo es obligatorio</span
+      <span class="form-text text-danger" *ngIf="validarCampo('nombre')">Este campo es obligatorio y de al menos 3 caracteres</span
       >
     </div>
   </div>
@@ -21,8 +22,8 @@
     <label class="col-sm-3 col-form-label">Agregar</label>
     <div class="col-sm-9">
       <div class="input-group mb-1">
-        <input class="form-control" placeholder="Agregar favorito"/>
-        <button class="btn btn-outline-primary" type="button">Agregar</button>
+        <input class="form-control" placeholder="Agregar favorito" [formControl]="nuevoJuego"/>
+        <button class="btn btn-outline-primary" type="button" (click)="agregarFavorito()">Agregar</button>
       </div>
     </div>
   </div>
@@ -30,16 +31,17 @@
   <!-- Lista de juegos favoritos -->
   <div class="row">
     <label class="col-sm-3 col-form-label">Favoritos</label>
-    <div class="col-sm-9">
+    <div class="col-sm-9"  formArrayName="favoritos">
       <div
         class="input-group mb-1"
-        
+        *ngFor="let favorito of favoritosArr.controls; let i = index "
       >
         <input
           class="form-control"
+          [formControlName]="i"
         />
 
-        <button class="btn btn-outline-danger" type="button" >Eliminar</button>
+        <button class="btn btn-outline-danger" type="button" (click)="eliminar(i)">Eliminar</button>
       </div>
     </div>
   </div>
@@ -57,5 +59,18 @@
   </div>
 </form>
 
+
+<span>Valid</span>
+<pre>{{miFormulario.valid}}</pre>
+<br>
+
+<span>Value</span>
+<pre>{{miFormulario.value | json}}</pre>
+
+<span>Nuevo Juego</span>
+<pre>{{nuevoJuego.valid}}</pre>
+
+<span>Nuevo Juego</span>
+<pre>{{nuevoJuego.value}}</pre>
 <!-- <span>Persona</span>
 <pre>{{ persona.favoritos | json }}</pre> -->

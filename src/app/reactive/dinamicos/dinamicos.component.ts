@@ -50,7 +50,8 @@ export class DinamicosComponent {
   }
 
   eliminar(index : number){
-    this.miFormulario.controls['favoritos']?.value.splice(index,1)
+    //? Borra los form control con el indice
+    this.favoritosArr.removeAt(index)
   }
 
   agregarFavorito(){

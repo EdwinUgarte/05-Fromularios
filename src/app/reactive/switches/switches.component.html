@@ -1,20 +1,23 @@
 <h2>Reactive: Switches</h2>
 <hr />
 
-<form >
-
+<form [formGroup]="miFormulario" (ngSubmit)="guardar()">
   <div class="row mb-3">
-    <label class="col-sm-3 col-form-label">Genero  </label>
-    <div><span class="form-text text-danger"> *Debes seleccionar un genero</span></div>
+    <label class="col-sm-3 col-form-label">Genero </label>
+    <div>
+      <span class="form-text text-danger" *ngIf="validarCampo('genero')">
+        *Debes seleccionar un genero</span
+      >
+    </div>
     <div class="col-sm-9">
-
       <div class="form-check">
         <input
           class="form-check-input"
           type="radio"
+          name="genero"
           value="M"
+          formControlName="genero"
           id="radioMasculino"
-     
         />
         <label class="form-check-label" for="radioMasculino"> Masculino </label>
       </div>
@@ -23,7 +26,9 @@
         <input
           class="form-check-input"
           type="radio"
+          name="genero"
           value="F"
+          formControlName="genero"
           id="radioFemenino"
         />
         <label class="form-check-label" for="radioFemenino"> Femenino </label>
@@ -42,6 +47,7 @@
           type="checkbox"
           role="switch"
           id="flexSwitchCheckChecked"
+          formControlName="notificaciones"
         />
         <label class="form-check-label" for="flexSwitchCheckChecked"
           >Quiero recibir notificaciones</label
@@ -57,23 +63,39 @@
           class="form-check-input"
           type="checkbox"
           id="terminosCheck"
+          formControlName="terminos"
         />
         <label class="form-check-label" for="terminosCheck">
           Términos y condiciones
         </label>
-        <span class="form-text text-danger" > *Debes aceptar los terminos y condiciones</span>
+        <span class="form-text text-danger" *ngIf="validarCampo('terminos')">
+          *Debes aceptar los terminos y condiciones</span
+        >
       </div>
     </div>
   </div>
 
-
   <div class="row">
     <div class="col">
-        <button class="btn btn-primary float-end" type="submit" >Guardar</button>
+      <button
+        class="btn btn-primary float-end"
+        type="submit"
+        [disabled]="miFormulario.invalid"
+      >
+        Guardar
+      </button>
     </div>
   </div>
-
 </form>
+
+<h2>formulario</h2>
+<pre>{{ miFormulario.value | json }}</pre>
+<pre>{{ miFormulario.valid }}</pre>
+<br />
+
+<h2>Persona</h2>
+<pre>{{ persona | json }}</pre>
+<br />
 
 <!-- <h5>Valor del formulario</h5>
 <pre>{{miFormulario.value | json}}</pre>
@@ -89,4 +111,3 @@
 
 <h5>Condiciones</h5>
 <pre></pre> -->
-

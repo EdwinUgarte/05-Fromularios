@@ -1,0 +1,51 @@
+<form [formGroup]="miFormulario" (ngSubmit)="guardar()">
+  <div>
+    <label>Nombre</label>
+    <input type="text" class="form-control" formControlName="nombre" />
+    <span class="text-danger" *ngIf="validarCampo('nombre')">*El nombre es obligatorio</span
+    >
+  </div>
+  <div>
+    <label>Email</label>
+    <input type="text" class="form-control" formControlName="email" />
+    <span class="text-danger" *ngIf="validarCampo('email')" >*Escribe un email valido</span
+    >
+  </div>
+  <div>
+    <label>Contraseña</label>
+    <input type="password" class="form-control" formControlName="contraseña" />
+    <span
+      class="text-danger"
+      *ngIf="validarCampo('contraseña')"
+      >*La contraseña es obligatoria</span
+    >
+  </div>
+  <div>
+    <label>fecha de inicio</label>
+    <input type="date" class="form-control" formControlName="fecha" />
+    <span class="text-danger" *ngIf="validarFecha()"
+      >Debes seleccionar una fecha</span
+    >
+  </div>
+  <br />
+  <div>
+    <button
+      class="btn btn-danger"
+      type="submit"
+       
+    >
+      Guardar
+    </button>
+  </div>
+</form>
+
+
+<hr>
+<!-- <div>
+  <h2>Valido</h2>
+  <pre>{{ miFormulario.valid }}</pre>
+</div>
+<div>
+  <h2>fecha Valida</h2>
+  <pre>{{ miFormulario.controls["fecha"].touched }}</pre>
+</div> -->

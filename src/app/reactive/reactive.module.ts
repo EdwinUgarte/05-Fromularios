@@ -7,13 +7,15 @@ import { ReactiveRoutingModule } from './reactive-routing.module';
 import { BasicosComponent } from './basicos/basicos.component';
 import { DinamicosComponent } from './dinamicos/dinamicos.component';
 import { SwitchesComponent } from './switches/switches.component';
+import { PruebaComponent } from './prueba/prueba.component';
 
 
 @NgModule({
   declarations: [
     BasicosComponent,
     DinamicosComponent,
-    SwitchesComponent
+    SwitchesComponent,
+    PruebaComponent
   ],
   imports: [
     CommonModule,
